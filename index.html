@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Mother's Day 🌸</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
+    rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+  <script src="js/script.js" defer></script>
+</head>
+
+<body>
+
+  <canvas id="petals"></canvas>
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="bg-circle bc1"></div>
+    <div class="bg-circle bc2"></div>
+
+    <!-- Wreath SVG -->
+    <svg class="wreath" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- ring of leaves -->
+      <g opacity=".9">
+        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#7fa87f" transform="rotate(0 170 170)" />
+        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#96c496" transform="rotate(30 170 170)" />
+        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#7fa87f" transform="rotate(60 170 170)" />
+        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#96c496" transform="rotate(90 170 170)" />
+        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#7fa87f" transform="rotate(120 170 170)" />
+        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#96c496" transform="rotate(150 170 170)" />
+        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#7fa87f" transform="rotate(180 170 170)" />
+        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#96c496" transform="rotate(210 170 170)" />
+        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#7fa87f" transform="rotate(240 170 170)" />
+        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#96c496" transform="rotate(270 170 170)" />
+        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#7fa87f" transform="rotate(300 170 170)" />
+        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#96c496" transform="rotate(330 170 170)" />
+      </g>
+      <!-- top rose -->
+      <g transform="translate(170,52)">
+        <ellipse cx="0" cy="-15" rx="13" ry="20" fill="#f9d4d4" />
+        <ellipse cx="0" cy="-15" rx="13" ry="20" fill="#f9d4d4" transform="rotate(60)" />
+        <ellipse cx="0" cy="-15" rx="13" ry="20" fill="#f9d4d4" transform="rotate(120)" />
+        <ellipse cx="0" cy="-15" rx="13" ry="20" fill="#f9d4d4" transform="rotate(180)" />
+        <ellipse cx="0" cy="-15" rx="13" ry="20" fill="#f9d4d4" transform="rotate(240)" />
+        <ellipse cx="0" cy="-15" rx="13" ry="20" fill="#f9d4d4" transform="rotate(300)" />
+        <circle r="13" fill="#c9922a" />
+        <circle r="6" fill="#d4b060" />
+      </g>
+      <!-- right rose -->
+      <g transform="translate(288,170)">
+        <ellipse cx="0" cy="-13" rx="11" ry="18" fill="#e07585" />
+        <ellipse cx="0" cy="-13" rx="11" ry="18" fill="#e07585" transform="rotate(60)" />
+        <ellipse cx="0" cy="-13" rx="11" ry="18" fill="#e07585" transform="rotate(120)" />
+        <ellipse cx="0" cy="-13" rx="11" ry="18" fill="#e07585" transform="rotate(180)" />
+        <ellipse cx="0" cy="-13" rx="11" ry="18" fill="#e07585" transform="rotate(240)" />
+        <ellipse cx="0" cy="-13" rx="11" ry="18" fill="#e07585" transform="rotate(300)" />
+        <circle r="11" fill="#fff" />
+        <circle r="5" fill="#e07585" />
+      </g>
+      <!-- bottom gold flower -->
+      <g transform="translate(170,286)">
+        <ellipse cx="0" cy="-14" rx="11" ry="19" fill="#c9922a" />
+        <ellipse cx="0" cy="-14" rx="11" ry="19" fill="#c9922a" transform="rotate(72)" />
+        <ellipse cx="0" cy="-14" rx="11" ry="19" fill="#c9922a" transform="rotate(144)" />
+        <ellipse cx="0" cy="-14" rx="11" ry="19" fill="#c9922a" transform="rotate(216)" />
+        <ellipse cx="0" cy="-14" rx="11" ry="19" fill="#c9922a" transform="rotate(288)" />
+        <circle r="11" fill="#f9d4d4" />
+        <circle r="5" fill="#c9922a" />
+      </g>
+      <!-- left deep rose -->
+      <g transform="translate(52,170)">
+        <ellipse cx="0" cy="-12" rx="10" ry="17" fill="#b84059" />
+        <ellipse cx="0" cy="-12" rx="10" ry="17" fill="#b84059" transform="rotate(60)" />
+        <ellipse cx="0" cy="-12" rx="10" ry="17" fill="#b84059" transform="rotate(120)" />
+        <ellipse cx="0" cy="-12" rx="10" ry="17" fill="#b84059" transform="rotate(180)" />
+        <ellipse cx="0" cy="-12" rx="10" ry="17" fill="#b84059" transform="rotate(240)" />
+        <ellipse cx="0" cy="-12" rx="10" ry="17" fill="#b84059" transform="rotate(300)" />
+        <circle r="10" fill="#c9922a" />
+      </g>
+      <!-- ribbon -->
+      <path d="M152 296 Q170 310 188 296" stroke="#e07585" stroke-width="3.5" fill="none" stroke-linecap="round" />
+      <path d="M158 296 Q148 316 136 320" stroke="#e07585" stroke-width="3" fill="none" stroke-linecap="round" />
+      <path d="M182 296 Q192 316 204 320" stroke="#e07585" stroke-width="3" fill="none" stroke-linecap="round" />
+    </svg>
+
+    <div class="hero-eyebrow">With all my heart 💕 I wish you a</div>
+    <h1 class="hero-title">Happy<br /><em>Mother's Day</em></h1>
+    <div class="hero-name">To My Beautiful Wife <em class="sec-title">Manisha💖</em></div>
+    <p class="hero-sub">Every single day you amaze me. Today, the whole world celebrates their Mother. <em> But I
+        celebrate you.</em> You're the most
+      wonderful mum and the love of my life. ✨</p>
+    <!-- <p class="hero-sub">Click on the below button for some hearts and flowers!</p> -->
+    <div class="balloon-btn hero-sub" onclick="launchConfetti(this)">
+      <div class="balloon">💝</div>
+    </div>
+    <div class="balloon-label hero-sub">Burst the Heart Balloon for some surprises!</div>
+
+    <!-- <button class="hero-cta" onclick="launchConfetti(this)">💕🌸✨💛🌷💖🌺🩷</button> -->
+    <div class="scroll-nudge">scroll to explore<div class="chevron"></div>
+    </div>
+  </section>
+
+  <div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
+
+  <!-- ═══════ FLIP CARDS ═══════ -->
+  <section class="section reveal">
+    <div class="sec-label">Flip each card to reveal</div>
+    <h2 class="sec-title">10 Reasons I Love You <em>More Than Words</em></h2>
+    <p class="sec-desc">Tap any card for your personal love note 💌</p>
+    <div class="cards-grid" id="cards-grid"></div>
+  </section>
+
+  <div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
+
+  <!-- ═══════ MEMORY JAR ═══════ -->
+  <section class="section reveal jar-section">
+    <div class="sec-label">Our treasure chest</div>
+    <h2 class="sec-title">A Jar Full of <em>Memories</em></h2>
+    <p class="sec-desc">Every tap opens a secret memory we share. Keep going — there are 14 inside! 🫙</p>
+    <div class="jar-wrap">
+      <svg class="jar-svg" id="jar" viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" onclick="openMemory()">
+        <rect x="54" y="18" width="52" height="14" rx="5" fill="#d4a040" />
+        <rect x="42" y="30" width="76" height="16" rx="6" fill="#c9922a" />
+        <path d="M38 46 Q30 82 30 124 Q30 174 80 174 Q130 174 130 124 Q130 82 122 46Z" fill="#fff9f0" stroke="#f9d4d4"
+          stroke-width="2.5" />
+        <ellipse cx="56" cy="94" rx="6" ry="18" fill="rgba(255,255,255,.5)" transform="rotate(-15 56 94)" />
+        <rect x="55" y="100" width="22" height="8" rx="3" fill="#f9d4d4" transform="rotate(-6 55 100)" />
+        <rect x="60" y="114" width="20" height="8" rx="3" fill="#e07585" transform="rotate(5 60 114)" />
+        <rect x="78" y="104" width="18" height="8" rx="3" fill="#c9922a" transform="rotate(-3 78 104)" />
+        <rect x="68" y="120" width="20" height="8" rx="3" fill="#b84059" transform="rotate(8 68 120)" />
+        <text x="68" y="76" font-size="14" opacity=".75">💕</text>
+        <text x="90" y="144" font-size="12" opacity=".6">💛</text>
+      </svg>
+      <span class="jar-lbl">Tap the jar 🫙</span>
+    </div>
+  </section>
+
+  <!-- Memory popup -->
+  <div class="popup-overlay" id="popup" onclick="closePopup(event)">
+    <div class="popup-card" id="back-img">
+      <span class="p-num" id="p-num">Memory</span>
+      <button class="popup-close" onclick="closePopup({force:true})">&nbsp;✕</button>
+      <!-- <div class="p-emoji" id="p-emoji">💕</div>
+      <p class="p-text" id="p-text">Loading…</p> -->
+    </div>
+  </div>
+
+  <div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
+
+  <!-- Add this HTML where you want the carousel -->
+  <div class="carousel-section section reveal">
+    <div class="sec-label">Our beautiful moments</div>
+    <h2 class="sec-title">Our <em>Photo Album</em></h2>
+    <p class="sec-desc">Every picture tells our story 📸</p>
+
+    <div class="carousel">
+      <div class="carousel-track" id="carousel-track">
+        <div class="carousel-slide">
+          <img src="photo1.jpg" alt="Memory 1" />
+          <div class="slide-caption">Our favourite memory 💕</div>
+        </div>
+        <div class="carousel-slide">
+          <img src="photo2.jpg" alt="Memory 2" />
+          <div class="slide-caption">Always smiling 🌸</div>
+        </div>
+        <div class="carousel-slide">
+          <img src="photo3.jpg" alt="Memory 3" />
+          <div class="slide-caption">Forever us ✨</div>
+        </div>
+        <div class="carousel-slide">
+          <img src="photo4.jpg" alt="Memory 4" />
+          <div class="slide-caption">The best days 💛</div>
+        </div>
+      </div>
+
+      <!-- Arrows -->
+      <button class="car-btn car-prev" onclick="moveCarousel(-1)">&#10094;</button>
+      <button class="car-btn car-next" onclick="moveCarousel(1)">&#10095;</button>
+
+      <!-- Dots -->
+      <div class="car-dots" id="car-dots"></div>
+    </div>
+  </div>
+
+  <div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
+
+
+  <!-- ═══════ VIDEO ═══════ -->
+  <section class="section reveal">
+    <div class="sec-label">A special surprise</div>
+    <h2 class="sec-title">Our <em>Memory Reel</em></h2>
+    <p class="sec-desc">Drop your video below or click to choose — and let the memories play 🎞️</p>
+
+    <div class="video-shell has-video" id="video-shell" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)"
+      ondrop="onDrop(event)">
+      <div class="video-player-wrap" id="vid-player">
+        <video id="mem-video" controls src="files/memory.MOV"></video>
+      </div>
+    </div>
+  </section>
+
+  <div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
+
+  <!-- ═══════ LETTER ═══════ -->
+  <section class="section reveal">
+    <div class="sec-label">From the heart</div>
+    <h2 class="sec-title">A Letter <em>Just for You</em></h2>
+    <div class="letter-box">
+      <p class="letter-text" id="letter-text"></p>
+      <div class="letter-sig">
+        <span>Always &amp; forever yours,</span>
+        Your Husband 💍
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ FINALE ═══════ -->
+  <div class="finale reveal">
+    <h2 class="finale-title">We Love You!</h2>
+    <p class="finale-sub">Now and for every Mother's Day to come 🌷</p>
+    <div class="finale-hearts"><span>💕</span><span>❤️</span><span>💕</span></div>
+    <br />
+    <button class="big-btn" onclick="launchConfetti(this)">Hearts💖 &amp; Flowers🌸</button>
+  </div>
+
+  <footer>Made with ❤️ just for you · Happy Mother's Day 2026 🌸</footer>
+
+
+</body>
+
+</html>
