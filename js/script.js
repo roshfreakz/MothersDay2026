@@ -110,32 +110,6 @@ const letterBox = document.querySelector('.letter-box');
 if (letterBox) { const lo = new IntersectionObserver(entries => { if (entries[0].isIntersecting) typeLetter() }, { threshold: .2 }); lo.observe(letterBox) }
 
 /* ── CONFETTI ── */
-// const COLORS = ['#e07585', '#f9d4d4', '#c9922a', '#b84059', '#7fa87f', '#fff', '#f5c6c6', '#d4a040'];
-// const EMOJIS = ['💕', '🌸', '✨', '💛', '🌷', '💖', '🌺'];
-
-// function launchConfetti(btn) {
-//     const r = btn.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-//     for (let i = 0; i < 80; i++) {
-//         const el = document.createElement('div');
-//         el.className = 'cpx';
-//         const angle = Math.random() * Math.PI * 2, dist = 80 + Math.random() * 200;
-//         const tx = Math.cos(angle) * dist, sz = 6 + Math.random() * 10;
-//         const shapes = ['50%', '0', '30%'];
-//         el.style.cssText = `left:${cx}px;top:${cy}px;width:${sz}px;height:${sz}px;background:${COLORS[0 | Math.random() * COLORS.length]};border-radius:${shapes[0 | Math.random() * shapes.length]};--dur:${600 + Math.random() * 40}s;--del:${Math.random() * .3}s;--tx:${tx}px`;
-//         document.body.appendChild(el);
-//         //setTimeout(() => el.remove(), 2800);
-//     }
-//     for (let i = 0; i < 14; i++) {
-//         const el = document.createElement('div');
-//         el.className = 'cpx';
-//         el.style.cssText = `left:${cx + (Math.random() - .5) * 200}px;top:${cy + (Math.random() - .5) * 100}px;font-size:${20 + Math.random() * 18}px;background:transparent;--dur:${400 + Math.random() * 10}s;--del:${Math.random() * .4}s;--tx:${(Math.random() - .5) * 160}px`;
-//         el.textContent = EMOJIS[0 | Math.random() * EMOJIS.length];
-//         document.body.appendChild(el);
-//         //setTimeout(() => el.remove(), 2600);
-//     }
-// }
-
-/* Replace your entire launchConfetti function */
 function launchConfetti(btn) {
     const COLORS = ['#e07585', '#f9d4d4', '#c9922a', '#b84059', '#7fa87f', '#fff', '#f5c6c6', '#d4a040'];
     const EMOJIS = ['Manisha💕', 'Manisha💛', 'Manisha💖', 'Manisha🩷'];
@@ -187,13 +161,16 @@ function launchConfetti(btn) {
     }
 }
 
+const TRAIL_HEARTS = ['🩷', '🤍', '💕', '✨', '🌸'];
+
+
 /* mini hearts on click */
 document.addEventListener('click', e => {
     if (e.target.closest('button,.flip-card,.jar-svg,.video-shell,.popup-overlay,input')) return;
     const el = document.createElement('div');
     el.className = 'cpx';
-    el.style.cssText = `left:${e.clientX}px;top:${e.clientY}px;font-size:${18 + Math.random() * 14}px;background:transparent;--dur:1.3s;--del:0s;--tx:${(Math.random() - .5) * 70}px`;
-    el.textContent = EMOJIS[0 | Math.random() * EMOJIS.length];
+    el.style.cssText = `left:${e.clientX}px;top:${e.clientY}px;font-size:${18 + Math.random() * 14}px;background:transparent;--dur:5s;--del:0s;--tx:${(Math.random() - .5) * 70}px`;
+    el.textContent = TRAIL_HEARTS[0 | Math.random() * TRAIL_HEARTS.length];
     document.body.appendChild(el);
     setTimeout(() => el.remove(), 1400);
 });
@@ -215,7 +192,6 @@ document.addEventListener('mousedown', () => cursor.style.transform = 'translate
 document.addEventListener('mouseup', () => cursor.style.transform = 'translate(-50%,-50%) scale(1)');
 
 // ── Trail hearts
-const TRAIL_HEARTS = ['🩷', '🤍', '💕', '✨', '🌸'];
 let lastTrail = 0;
 
 function spawnTrail(x, y) {
@@ -238,38 +214,49 @@ function spawnTrail(x, y) {
 
 
 /* Add to your script.js */
-let currentSlide = 0;
-const track = document.getElementById('carousel-track');
-const slides = document.querySelectorAll('.carousel-slide');
-const dotsWrap = document.getElementById('car-dots');
+function initCarousel(trackId, dotsId) {
+    let currentSlide = 0;
+    const track = document.getElementById(trackId);
+    const slides = document.querySelectorAll(`#${trackId} .carousel-slide`);
+    const dotsWrap = document.getElementById(dotsId);
 
-// Build dots
-slides.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.className = 'car-dot' + (i === 0 ? ' active' : '');
-    dot.onclick = () => goToSlide(i);
-    dotsWrap.appendChild(dot);
-});
-
-function goToSlide(index) {
-    currentSlide = (index + slides.length) % slides.length;
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
-    document.querySelectorAll('.car-dot').forEach((d, i) => {
-        d.classList.toggle('active', i === currentSlide);
+    // Build dots
+    slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'car-dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => goToSlide(i);
+        dotsWrap.appendChild(dot);
     });
+
+    function goToSlide(index) {
+        currentSlide = (index + slides.length) % slides.length;
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        document.querySelectorAll(`#${dotsId} .car-dot`).forEach((d, i) => {
+            d.classList.toggle('active', i === currentSlide);
+        });
+    }
+
+    function moveCarousel(dir) {
+        goToSlide(currentSlide + dir);
+    }
+
+    // Auto-play every 4 seconds
+    //setInterval(() => moveCarousel(1), 4000);
+
+    // Swipe support for mobile
+    let touchStartX = 0;
+    track.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+    track.addEventListener('touchend', e => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) moveCarousel(diff > 0 ? 1 : -1);
+    });
+
+    // Expose moveCarousel to global scope for button clicks
+    const carouselNum = trackId.slice(-1);
+    window[`moveCarousel${carouselNum}`] = moveCarousel;
 }
 
-function moveCarousel(dir) {
-    goToSlide(currentSlide + dir);
-}
-
-// Auto-play every 4 seconds
-setInterval(() => moveCarousel(1), 4000);
-
-// Swipe support for mobile
-let touchStartX = 0;
-track.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
-track.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) moveCarousel(diff > 0 ? 1 : -1);
-});
+// Initialize the three carousels
+initCarousel('carousel-track1', 'car-dots1');
+initCarousel('carousel-track2', 'car-dots2');
+initCarousel('carousel-track3', 'car-dots3');
