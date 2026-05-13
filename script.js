@@ -1,3 +1,29 @@
+/* ── AUTH REDIRECT ── */
+const TOKEN_KEY = 'logintoken';
+
+function getSessionAuth() {
+    const raw = sessionStorage.getItem(TOKEN_KEY);
+    if (!raw) return null;
+
+    try {
+        const data = JSON.parse(raw);
+        if (!data || typeof data.token !== 'string' || typeof data.expiresAt !== 'number') return null;
+        return data;
+    } catch (err) {
+        return null;
+    }
+}
+
+function validateAuth() {
+    const auth = getSessionAuth();
+    if (!auth || auth.expiresAt <= Date.now()) {
+        sessionStorage.removeItem(TOKEN_KEY);
+        window.location.replace('index.html');
+    }
+}
+
+validateAuth();
+
 /* ── PETALS ── */
 const canvas = document.getElementById('petals'), ctx = canvas.getContext('2d');
 let W, H, petals = [];
@@ -29,20 +55,20 @@ reasons.forEach(r => {
 
 /* ── MEMORY JAR ── */
 const memories = [
-    { r: './files/us/1.jpg' },
-    { r: './files/us/2.jpg' },
-    { r: './files/us/3.jpg' },
-    { r: './files/us/4.jpg' },
-    { r: './files/us/5.jpg' },
-    { r: './files/us/6.jpg' },
-    { r: './files/us/7.jpg' },
-    { r: './files/us/8.jpg' },
-    { r: './files/us/9.jpg' },
-    { r: './files/us/10.jpg' },
-    { r: './files/us/11.jpg' },
-    { r: './files/us/12.jpg' },
-    { r: './files/us/13.jpg' },
-    { r: './files/us/14.jpg' },
+    { r: './pri/us/1.jpg' },
+    { r: './pri/us/2.jpg' },
+    { r: './pri/us/3.jpg' },
+    { r: './pri/us/4.jpg' },
+    { r: './pri/us/5.jpg' },
+    { r: './pri/us/6.jpg' },
+    { r: './pri/us/7.jpg' },
+    { r: './pri/us/8.jpg' },
+    { r: './pri/us/9.jpg' },
+    { r: './pri/us/10.jpg' },
+    { r: './pri/us/11.jpg' },
+    { r: './pri/us/12.jpg' },
+    { r: './pri/us/13.jpg' },
+    { r: './pri/us/14.jpg' },
 ];
 let memIdx = 0;
 function openMemory() {
@@ -83,7 +109,7 @@ function resetVideo() {
 }
 function onDragOver(e) { e.preventDefault(); document.getElementById('video-shell').classList.add('drag-over') }
 function onDragLeave() { document.getElementById('video-shell').classList.remove('drag-over') }
-function onDrop(e) { e.preventDefault(); onDragLeave(); const f = e.dataTransfer.files[0]; if (f && f.type.startsWith('video/')) showVideo(URL.createObjectURL(f)) }
+function onDrop(e) { e.preventDefault(); onDragLeave(); const f = e.dataTransfer.pri[0]; if (f && f.type.startsWith('video/')) showVideo(URL.createObjectURL(f)) }
 
 /* ── TYPEWRITER LETTER ── */
 const letterText = `My dearest love,\n\nEvery day I watch you pour your whole heart into our family — your patience, your warmth, your laughter — and I am in complete awe of you.\n\nBeing a mother is the hardest thing in the world, and you make it look like the most beautiful, natural thing I have ever seen. Our children are so lucky to have you. And so am I.\n\nThank you for choosing us, again and again, every single day. Today is yours. You deserve every flower, every hug, every quiet moment of rest and joy.\n\nI love you more than yesterday, and less than tomorrow. 🌷`;
@@ -166,6 +192,7 @@ const TRAIL_HEARTS = ['🩷', '🤍', '💕', '✨', '🌸'];
 
 /* mini hearts on click */
 document.addEventListener('click', e => {
+    validateAuth();
     if (e.target.closest('button,.flip-card,.jar-svg,.video-shell,.popup-overlay,input')) return;
     const el = document.createElement('div');
     el.className = 'cpx';

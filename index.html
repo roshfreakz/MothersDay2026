@@ -1,339 +1,149 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Mother's Day 🌸</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
-    rel="stylesheet" />
-  <link href="css/style.css" rel="stylesheet" />
-  <script src="js/script.js" defer></script>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f9d4d4 0%, #ffd9d9 45%, #fff1f1 100%);
+      font-family: Arial, Helvetica, sans-serif;
+      color: #3d2728;
+    }
+    .login-card {
+      width: min(400px, 90%);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+      background: #ffffffee;
+      text-align: center;
+    }
+    .login-card h1 {
+      margin: 0 0 1rem;
+      font-size: 2rem;
+      letter-spacing: 0.03em;
+    }
+    .login-card p {
+      margin: 0 0 1.5rem;
+      color: #6b4d54;
+    }
+    .login-card label {
+      display: block;
+      text-align: left;
+      margin: 0.75rem 0 0.35rem;
+      font-size: 0.95rem;
+    }
+    .login-card input {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1px solid #e6c6c6;
+      border-radius: 12px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    .login-card button {
+      width: 100%;
+      margin-top: 1.4rem;
+      padding: 0.95rem 1rem;
+      border: none;
+      border-radius: 12px;
+      background: #e07585;
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .login-card button:hover {
+      background: #c95d6d;
+    }
+    .error {
+      margin-top: 1rem;
+      color: #9d2231;
+      font-size: 0.95rem;
+    }
+    .note {
+      margin-top: 1.25rem;
+      font-size: 0.9rem;
+      color: #8a646d;
+    }
+  </style>
 </head>
-
 <body>
-
-  <canvas id="petals"></canvas>
-
-  <!-- ═══════ HERO ═══════ -->
-  <section class="hero">
-    <div class="bg-circle bc1"></div>
-    <div class="bg-circle bc2"></div>
-
-    <!-- Wreath SVG -->
-    <svg class="wreath" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- ring of leaves -->
-      <g opacity=".9">
-        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#7fa87f" transform="rotate(0 170 170)" />
-        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#96c496" transform="rotate(30 170 170)" />
-        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#7fa87f" transform="rotate(60 170 170)" />
-        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#96c496" transform="rotate(90 170 170)" />
-        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#7fa87f" transform="rotate(120 170 170)" />
-        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#96c496" transform="rotate(150 170 170)" />
-        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#7fa87f" transform="rotate(180 170 170)" />
-        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#96c496" transform="rotate(210 170 170)" />
-        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#7fa87f" transform="rotate(240 170 170)" />
-        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#96c496" transform="rotate(270 170 170)" />
-        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#7fa87f" transform="rotate(300 170 170)" />
-        <ellipse cx="170" cy="26" rx="11" ry="24" fill="#96c496" transform="rotate(330 170 170)" />
-      </g>
-      <!-- top rose -->
-      <g transform="translate(170,52)">
-        <ellipse cx="0" cy="-15" rx="13" ry="20" fill="#f9d4d4" />
-        <ellipse cx="0" cy="-15" rx="13" ry="20" fill="#f9d4d4" transform="rotate(60)" />
-        <ellipse cx="0" cy="-15" rx="13" ry="20" fill="#f9d4d4" transform="rotate(120)" />
-        <ellipse cx="0" cy="-15" rx="13" ry="20" fill="#f9d4d4" transform="rotate(180)" />
-        <ellipse cx="0" cy="-15" rx="13" ry="20" fill="#f9d4d4" transform="rotate(240)" />
-        <ellipse cx="0" cy="-15" rx="13" ry="20" fill="#f9d4d4" transform="rotate(300)" />
-        <circle r="13" fill="#c9922a" />
-        <circle r="6" fill="#d4b060" />
-      </g>
-      <!-- right rose -->
-      <g transform="translate(288,170)">
-        <ellipse cx="0" cy="-13" rx="11" ry="18" fill="#e07585" />
-        <ellipse cx="0" cy="-13" rx="11" ry="18" fill="#e07585" transform="rotate(60)" />
-        <ellipse cx="0" cy="-13" rx="11" ry="18" fill="#e07585" transform="rotate(120)" />
-        <ellipse cx="0" cy="-13" rx="11" ry="18" fill="#e07585" transform="rotate(180)" />
-        <ellipse cx="0" cy="-13" rx="11" ry="18" fill="#e07585" transform="rotate(240)" />
-        <ellipse cx="0" cy="-13" rx="11" ry="18" fill="#e07585" transform="rotate(300)" />
-        <circle r="11" fill="#fff" />
-        <circle r="5" fill="#e07585" />
-      </g>
-      <!-- bottom gold flower -->
-      <g transform="translate(170,286)">
-        <ellipse cx="0" cy="-14" rx="11" ry="19" fill="#c9922a" />
-        <ellipse cx="0" cy="-14" rx="11" ry="19" fill="#c9922a" transform="rotate(72)" />
-        <ellipse cx="0" cy="-14" rx="11" ry="19" fill="#c9922a" transform="rotate(144)" />
-        <ellipse cx="0" cy="-14" rx="11" ry="19" fill="#c9922a" transform="rotate(216)" />
-        <ellipse cx="0" cy="-14" rx="11" ry="19" fill="#c9922a" transform="rotate(288)" />
-        <circle r="11" fill="#f9d4d4" />
-        <circle r="5" fill="#c9922a" />
-      </g>
-      <!-- left deep rose -->
-      <g transform="translate(52,170)">
-        <ellipse cx="0" cy="-12" rx="10" ry="17" fill="#b84059" />
-        <ellipse cx="0" cy="-12" rx="10" ry="17" fill="#b84059" transform="rotate(60)" />
-        <ellipse cx="0" cy="-12" rx="10" ry="17" fill="#b84059" transform="rotate(120)" />
-        <ellipse cx="0" cy="-12" rx="10" ry="17" fill="#b84059" transform="rotate(180)" />
-        <ellipse cx="0" cy="-12" rx="10" ry="17" fill="#b84059" transform="rotate(240)" />
-        <ellipse cx="0" cy="-12" rx="10" ry="17" fill="#b84059" transform="rotate(300)" />
-        <circle r="10" fill="#c9922a" />
-      </g>
-      <!-- ribbon -->
-      <path d="M152 296 Q170 310 188 296" stroke="#e07585" stroke-width="3.5" fill="none" stroke-linecap="round" />
-      <path d="M158 296 Q148 316 136 320" stroke="#e07585" stroke-width="3" fill="none" stroke-linecap="round" />
-      <path d="M182 296 Q192 316 204 320" stroke="#e07585" stroke-width="3" fill="none" stroke-linecap="round" />
-    </svg>
-
-    <div class="hero-eyebrow">With all my heart 💕 I wish you a</div>
-    <h1 class="hero-title">Happy<br /><em>Mother's Day</em></h1>
-    <div class="hero-name">To My Beautiful Wife <em class="sec-title">Manisha💖</em></div>
-    <p class="hero-sub">Every single day you amaze me. Today, the whole world celebrates their Mother. <em> But I
-        celebrate you.</em> You're the most
-      wonderful mum and the love of my life. ✨</p>
-    <!-- <p class="hero-sub">Click on the below button for some hearts and flowers!</p> -->
-    <div class="balloon-btn hero-sub" onclick="launchConfetti(this)">
-      <div class="balloon">💝</div>
-    </div>
-    <div class="balloon-label hero-sub">Burst the Heart Balloon for some surprises!</div>
-
-    <!-- <button class="hero-cta" onclick="launchConfetti(this)">💕🌸✨💛🌷💖🌺🩷</button> -->
-    <div class="scroll-nudge">scroll to explore<div class="chevron"></div>
-    </div>
-  </section>
-
-  <div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
-
-  <!-- ═══════ FLIP CARDS ═══════ -->
-  <section class="section reveal">
-    <div class="sec-label">Flippping Surprises</div>
-    <h2 class="sec-title">Our Small Moments <br /> <em>Together As a family</em></h2>
-    <p class="sec-desc">Flip each card to reveal a surprise 💌</p>
-    <div class="cards-grid" id="cards-grid"></div>
-  </section>
-
-  <div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
-
-  <!-- ═══════ MEMORY JAR ═══════ -->
-  <section class="section reveal jar-section">
-    <div class="sec-label">Our treasure chest</div>
-    <h2 class="sec-title">A Jar Full of <em>Memories</em></h2>
-    <p class="sec-desc">Every tap opens a secret memory we share. Keep going — there are 14 suprises inside! 🫙</p>
-    <div class="jar-wrap">
-      <svg class="jar-svg" id="jar" viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" onclick="openMemory()">
-        <rect x="54" y="18" width="52" height="14" rx="5" fill="#d4a040" />
-        <rect x="42" y="30" width="76" height="16" rx="6" fill="#c9922a" />
-        <path d="M38 46 Q30 82 30 124 Q30 174 80 174 Q130 174 130 124 Q130 82 122 46Z" fill="#fff9f0" stroke="#f9d4d4"
-          stroke-width="2.5" />
-        <ellipse cx="56" cy="94" rx="6" ry="18" fill="rgba(255,255,255,.5)" transform="rotate(-15 56 94)" />
-        <rect x="55" y="100" width="22" height="8" rx="3" fill="#f9d4d4" transform="rotate(-6 55 100)" />
-        <rect x="60" y="114" width="20" height="8" rx="3" fill="#e07585" transform="rotate(5 60 114)" />
-        <rect x="78" y="104" width="18" height="8" rx="3" fill="#c9922a" transform="rotate(-3 78 104)" />
-        <rect x="68" y="120" width="20" height="8" rx="3" fill="#b84059" transform="rotate(8 68 120)" />
-        <text x="68" y="76" font-size="14" opacity=".75">💕</text>
-        <text x="90" y="144" font-size="12" opacity=".6">💛</text>
-      </svg>
-      <span class="jar-lbl">Tap the jar 🫙</span>
-    </div>
-  </section>
-
-  <!-- Memory popup -->
-  <div class="popup-overlay" id="popup" onclick="closePopup(event)">
-    <div class="popup-card" id="back-img">
-      <span class="p-num" id="p-num">Memory</span>
-      <button class="popup-close" onclick="closePopup({force:true})">&nbsp;✕</button>
-      <!-- <div class="p-emoji" id="p-emoji">💕</div>
-      <p class="p-text" id="p-text">Loading…</p> -->
-    </div>
+  <div class="login-card">
+    <h1>Welcome Back</h1>
+    <p>Please sign in to continue to the Mother's Day surprise.</p>
+    <form id="loginForm">
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" autocomplete="username" required />
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required />
+      <button type="submit">Log in</button>
+      <div id="errorMessage" class="error" role="alert" aria-live="polite"></div>
+    </form>
   </div>
+  <script src="pri/tia.js"></script>
+  <script>
+    const tokenKey = 'logintoken';
+    const sessionDurationMs = 10 * 60 * 1000; // 10 minutes
 
-  <div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
+    let validUser = '';
+    let validPass = '';
+    let credentialsLoaded = false;
 
-  <!-- ═══════ Carousel ═══════ -->
-  <div class="carousel-section section reveal">
-    <div class="sec-label">Beautiful moments</div>
-    <h2 class="sec-title">Celebrating <em>Motherhood</em></h2>
-    <p class="sec-desc">Every picture tells a story 📸</p>
+    function createRandomToken(length = 32) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      return Array.from({ length }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+    }
 
-    <div class="carousel-group">
+    const form = document.getElementById('loginForm');
+    const errorMessage = document.getElementById('errorMessage');
 
-      <div class="carousel">
-        <div class="carousel-track" id="carousel-track1">
-          <div class="carousel-slide">
-            <img src="files/them/1 (1).jpg" alt="Memory 1" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (2).jpg" alt="Memory 2" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (3).jpg" alt="Memory 3" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (4).jpg" alt="Memory 4" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (5).jpg" alt="Memory 5" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (6).jpg" alt="Memory 6" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (7).jpg" alt="Memory 7" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (8).jpg" alt="Memory 8" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (9).jpg" alt="Memory 9" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (10).jpg" alt="Memory 10" />
-          </div>
-        </div>
+    function loadCredentials() {
+      if (!window.credentials) {
+        errorMessage.textContent = 'Unable to load login credentials.';
+        return;
+      }
 
-        <!-- Arrows -->
-        <button class="car-btn car-prev" onclick="moveCarousel1(-1)">&#10094;</button>
-        <button class="car-btn car-next" onclick="moveCarousel1(1)">&#10095;</button>
+      validUser = window.credentials.username ? atob(window.credentials.username) : '';
+      validPass = window.credentials.password ? atob(window.credentials.password) : '';
+      credentialsLoaded = Boolean(validUser && validPass);
 
-        <!-- Dots -->
-        <div class="car-dots" id="car-dots1"></div>
-      </div>
+      if (!credentialsLoaded) {
+        errorMessage.textContent = 'Login configuration is invalid.';
+      }
+    }
 
-      <div class="carousel">
-        <div class="carousel-track" id="carousel-track2">
-          <div class="carousel-slide">
-            <img src="files/them/1 (11).jpg" alt="Memory 1" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (12).jpg" alt="Memory 2" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (13).jpg" alt="Memory 3" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (14).jpg" alt="Memory 4" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (15).jpg" alt="Memory 5" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (16).jpg" alt="Memory 6" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (17).jpg" alt="Memory 7" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (18).jpg" alt="Memory 8" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (19).jpg" alt="Memory 9" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (20).jpg" alt="Memory 10" />
-          </div>
-        </div>
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
 
-        <!-- Arrows -->
-        <button class="car-btn car-prev" onclick="moveCarousel2(-1)">&#10094;</button>
-        <button class="car-btn car-next" onclick="moveCarousel2(1)">&#10095;</button>
+      if (!credentialsLoaded) {
+        errorMessage.textContent = 'Login is not ready yet. Please wait and try again.';
+        return;
+      }
 
-        <!-- Dots -->
-        <div class="car-dots" id="car-dots2"></div>
-      </div>
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
 
-      <div class="carousel">
-        <div class="carousel-track" id="carousel-track3">
-          <div class="carousel-slide">
-            <img src="files/them/1 (21).jpg" alt="Memory 1" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (22).jpg" alt="Memory 2" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (23).jpg" alt="Memory 3" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (24).jpg" alt="Memory 4" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (25).jpg" alt="Memory 5" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (26).jpg" alt="Memory 6" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (27).jpg" alt="Memory 7" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (28).jpg" alt="Memory 8" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (29).jpg" alt="Memory 9" />
-          </div>
-          <div class="carousel-slide">
-            <img src="files/them/1 (30).jpg" alt="Memory 10" />
-          </div>
-        </div>
+      if (username === validUser && password === validPass) {
+        const authPayload = {
+          token: createRandomToken(32),
+          expiresAt: Date.now() + sessionDurationMs
+        };
 
-        <!-- Arrows -->
-        <button class="car-btn car-prev" onclick="moveCarousel3(-1)">&#10094;</button>
-        <button class="car-btn car-next" onclick="moveCarousel3(1)">&#10095;</button>
+        sessionStorage.setItem(tokenKey, JSON.stringify(authPayload));
+        window.location.href = 'home.html';
+        return;
+      }
 
-        <!-- Dots -->
-        <div class="car-dots" id="car-dots3"></div>
-      </div>
-    </div>
+      errorMessage.textContent = 'Invalid username or password. Please try again.';
+    });
 
-  </div>
-
-  <div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
-
-  <!-- ═══════ VIDEO ═══════ -->
-  <section class="section reveal">
-    <div class="sec-label">A special surprise</div>
-    <h2 class="sec-title">Cutest Memories <em>Altogether</em></h2>
-    <p class="sec-desc">Special Moments playback 🎞️</p>
-
-    <div class="video-shell has-video" id="video-shell" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)"
-      ondrop="onDrop(event)">
-      <div class="video-player-wrap" id="vid-player">
-        <video id="mem-video" controls src="files/memory.MOV"></video>
-      </div>
-    </div>
-  </section>
-
-  <div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
-
-  <!-- ═══════ LETTER ═══════ -->
-  <section class="section reveal">
-    <div class="sec-label">From Our heart</div>
-    <h2 class="sec-title">A Letter <em>Just for You</em></h2>
-    <div class="letter-box">
-      <p class="letter-text" id="letter-text"></p>
-      <div class="letter-sig letter-text">
-        <span>Always &amp; forever yours,</span>
-        Roshan💍 &amp; Nila 💖
-      </div>
-    </div>
-  </section>
-
-  <div class="petal-divider">✿ ✾ ✿ ✾ ✿</div>
-  <!-- ═══════ FINALE ═══════ -->
-  <div class="finale reveal">
-    <div class="sec-label">From Roshan💍 &amp; Nila 💖</div>
-    <h2 class="finale-title">We Love You! 🌷</h2>
-    <p class="finale-sub">Click the below image for some more Hearts💖 &amp; Flowers🌸</p>
-    <button class="big-btn confetti-btn" onclick="launchConfetti(this)"></button>
-    <div class="finale-hearts"><span>💕</span><span>❤️</span><span>💕</span></div>
-
-  </div>
-
-
-
-  <footer>Made by Roshan with ❤️ just for you · Happy Mother's Day Manisha 💕</footer>
-
-
+    loadCredentials();
+  </script>
 </body>
-
 </html>
